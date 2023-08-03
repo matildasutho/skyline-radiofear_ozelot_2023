@@ -2,7 +2,7 @@
   "name": "my-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://matildasutho.github.io/skyline",
+  "homepage": "https://matildasutho.github.io/skyline-radiofear_ozelot_2023/ASCII_SKYLINE/",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
