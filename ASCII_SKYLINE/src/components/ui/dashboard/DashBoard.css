@@ -1,0 +1,217 @@
+@font-face {
+  font-family: "Ticking Timebomb bb, italic";
+  src: url("./ticking-timebomb-bb.italic.ttf");
+}
+
+:root {
+  --accent: rgb(122,
+    154,
+    214);
+  --accent-second:rgba(122, 154, 214, 0.117);
+  --outline: black;
+  --main-text: rgb(0, 0, 0);
+  --sub-text: rgb(87, 87, 87);
+  --secondary: rgb(113, 113, 113);
+}
+
+.full-width {
+  width: 100vw;
+  height: 100vh;
+}
+#logo {
+  width: 20px;
+  /* position: absolute;
+  top: 0;
+  right: 0; */
+
+
+}
+/* .playsound-cont {
+  position: absolute;
+  right: -300px;
+  bottom: 0;
+} */
+
+.container {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(142, 142, 142);
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+font-family: 'Audiowide', cursive;
+  padding: 3px;
+  margin: 10px;
+  color: var(--sub-text);
+  position: absolute;
+  left: 0vw;
+  bottom: 0;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  width: 60px;
+  height: 30px;
+  padding: 3px;
+  border: 0.5px solid black;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+.link:hover {
+  border-color: var(--accent);
+  transition-duration: 200ms;
+  background-blend-mode: lighten;
+}
+.btn-2nd {
+  width: 60px;
+  height: 30px;
+  padding-top: 9px;
+  border: 0.5px solid black;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.7em;
+    font-family: "Ticking Timebomb bb, italic";
+}
+
+.btn-2nd:hover {
+  border-color: var(--accent);
+  transition-duration: 200ms;
+  background-blend-mode: lighten;
+  color: var(--accent);
+}
+.link:hover {
+  background-color: var(--accent-second);
+}
+.casette {
+  width: 170px;
+  height: 20px;
+  border: 0.5px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 1px;
+  margin-top: 5px;
+  background-color: var(--secondary);
+  font-family: 'Audiowide', cursive;
+  /* color: rgba(255, 255, 255, 0.9); */
+  font-size: 0.8rem;
+}
+
+.label {
+  width: 200px;
+  height: 25px;
+  padding-top: 1px;
+  border: 0.5px solid black;
+  border-radius: 2px;
+  background: var(--secondary);
+  /* color: white; */
+  overflow: hidden;
+  font-family: "Ticking Timebomb bb, italic";
+  font-size: 1.3em;
+  text-shadow: 0px 0px 2px var(--accent);
+}
+
+.scrollbar {
+  position: relative;
+  animation: 15s scroll linear infinite;
+}
+
+.ff_button,
+.rew_button {
+  width: 80px;
+  height: 30px;
+  padding: 2px;
+  margin: var(--btn-margin);
+  border: 0.5px solid black;
+  /* color: var(--main-text); */
+  background-color: rgb(1, 1, 1, 0);
+  border-radius: 5px;
+}
+
+.ff_cont {
+  border: 0.5px solid black;
+  height: 70px;
+}
+
+span {
+  margin: var(--btn-margin);
+  text-align: center;
+}
+
+.track_button {
+  background-color: var(--sub-text);
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+  padding-top: 4px;
+  color: var(--main-text);
+  font-family: 'Audiowide', cursive;
+  margin: 3px 1px;
+}
+
+button {
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.toggle {
+  opacity: 0.9;
+  position: relative;
+  padding-top: 5px;
+  margin-left: 15px;
+    width: 30px;
+}
+/* object for flitter animation */
+.mini-box {
+  height: 14px;
+  width: 5px;
+  margin: 1px;
+  background-color: var(--secondary);
+}
+.flitter {
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  animation: 10s flitter ease-in-out infinite;
+  
+}
+
+@keyframes scroll {
+  0% {
+    left: -200px;
+  }
+
+  100% {
+    left: 200px;
+  }
+}
+
+@keyframes flitter {
+    0% {
+        left: -150px;
+      }
+    
+      30% {
+        left: 150px;
+      }
+      100% {
+        left: 150px;
+      }
+}
