@@ -93,7 +93,7 @@ font-family: 'Audiowide', cursive;
   background-color: var(--accent-second);
 }
 .casette {
-  width: 170px;
+  width: 120px;
   height: 20px;
   border: 0.5px solid black;
   border-radius: 2px;
@@ -107,14 +107,15 @@ font-family: 'Audiowide', cursive;
 }
 
 .label {
-  width: 200px;
+ width: 290px;
+ overflow: hidden;
   height: 25px;
   padding-top: 1px;
   border: 0.5px solid black;
   border-radius: 2px;
   background: var(--secondary);
   /* color: white; */
-  overflow: hidden;
+
   font-family: "Ticking Timebomb bb, italic";
   font-size: 1.3em;
   text-shadow: 0px 0px 2px var(--accent);
@@ -124,7 +125,9 @@ font-family: 'Audiowide', cursive;
   position: relative;
   animation: 15s scroll linear infinite;
 }
+.blink {
 
+}
 .ff_button,
 .rew_button {
   width: 80px;
@@ -209,9 +212,9 @@ button:hover {
       }
     
       30% {
-        left: 150px;
+        left: 110px;
       }
       100% {
-        left: 150px;
+        left: 110px;
       }
 }

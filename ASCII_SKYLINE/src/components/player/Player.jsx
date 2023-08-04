@@ -3,66 +3,15 @@ import { PositionalAudio } from "@react-three/drei";
 import DashBoard from "../ui/dashboard/DashBoard.jsx";
 import AsciiEffect from "../AsciiEffect.jsx";
 import "../ui/dashboard/DashBoard.css";
-
-const tracks = [
-    "/tracks/Asphalt.mp3",
-    "/tracks/City Report.mp3",
-    "/tracks/Morning Shift.mp3",
-    "/tracks/Skyline.mp3",
-    "/tracks/Skyline (Privacy Remix).mp3",
-];
-
-const colorPalettes = [
-    {
-        background: "rgba(195, 200, 186, 0)",
-        foreground: "rgb(122, 154, 214)",
-        characters: ".,_#▓░^+$~#`}{*'t",
-    },
-    {
-        background: "rgb(0, 0, 0)",
-        foreground: "rgb(0, 150, 100)",
-        characters: ".#`_{,*~!",
-    },
-    {
-        background: "rgb(75, 75, 75)",
-        foreground: "rgb(200, 220, 255)",
-        characters: ".*~_^`/§▄(#`^{!}=+",
-    },
-    {
-        background: "rgb(112, 95, 95)",
-        foreground: "rgb(175, 236, 237)",
-        characters: ".,░_^{«~▄#`_!*",
-    },
-    {
-        background: "rgb(38, 109, 133)",
-        foreground: "rgb(176, 200, 209)",
-        characters: "._╬_{,></*~!",
-    },
-    {
-        background: "rgb(135, 135, 160)",
-        foreground: "rgb(0, 0, 200)",
-        characters: ".,░_▄«~#`_!*",
-    },
-    // Add more color palettes as needed
-];
-
-const toggleImages = [
-    "src/assets/skylinesPLAY-PAUSE178px.svg",
-    "src/assets/Spotify_Logo_RGB_White.png",
-];
+import colorPalettes from "./colorPalettes";
+import tracks from "./tracks";
 
 export default function PlaySound() {
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
     const sound = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [colorPalette, setColorPalette] = useState(colorPalettes[0]);
-    const [toggleImage, setToggleImage] = useState(toggleImages[0]);
-
     const [currentTime, setCurrentTime] = useState(0);
-
-    const handleImageChange = (image) => {
-        setToggleImage(image);
-    };
 
     useEffect(() => {
         if (sound.current && isPlaying) {
@@ -87,7 +36,7 @@ export default function PlaySound() {
     };
 
     const changeTrack = (nextTrackIndex) => {
-        sound.current.pause();
+        sound.current.stop();
         setIsPlaying(false);
         setCurrentTime(0);
         setCurrentTrackIndex(
@@ -101,9 +50,21 @@ export default function PlaySound() {
         }
     }, [isPlaying]);
 
-    const handleColorChange = (palette) => {
-        setColorPalette(palette);
-    };
+    // const handleColorChange = (palette) => {
+    //     setColorPalette(palette);
+    //     setRootBackgroundColor(palette.background);
+    //     // Pass the background color to the parent component (RootContainer)
+    //     // So it can update the ReactDOM's root background.
+    //     if (typeof window !== "undefined") {
+    //         window.parent.postMessage(
+    //             {
+    //                 type: "BACKGROUND_COLOR_CHANGE",
+    //                 backgroundColor: palette.background,
+    //             },
+    //             "*"
+    //         );
+    //     }
+    // };
 
     useEffect(() => {
         const handleTrackEnded = () => {
@@ -122,7 +83,9 @@ export default function PlaySound() {
     }, [currentTrackIndex]);
 
     const url = tracks[currentTrackIndex];
-    const display = url.replace("/tracks/", " ░░░░░░░░");
+    const display = url.replace("/tracks/", "░░░");
+    const duration = tracks[0].duration;
+    console.log(duration);
 
     return (
         <>
@@ -131,9 +94,15 @@ export default function PlaySound() {
                     url={tracks[currentTrackIndex]}
                     ref={(audio) => (sound.current = audio)}
                     onEnded={() => {
-                        handleTrackEnded();
+                        console.log("ended");
                     }}
                 />
+                {/* <Audio
+                    src={tracks[currentTrackIndex]}
+                    queNext={() => {
+                        handleTrackEnded();
+                    }}
+                /> */}
                 <AsciiEffect
                     sound={sound}
                     backGround={colorPalette.background}

@@ -8,7 +8,6 @@ const DashBoard = ({
     toggleaction,
     inner,
     trackDisplay,
-    toggleImage,
     button1,
     button2,
     button3,
