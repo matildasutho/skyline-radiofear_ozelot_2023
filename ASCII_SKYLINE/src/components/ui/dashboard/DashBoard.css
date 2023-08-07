@@ -200,7 +200,7 @@ button:hover {
   position: absolute;
   z-index: 1;
   display: inline-flex;
-  animation: 10s flitter ease-in-out infinite;
+  animation: 12s flitter ease-in-out infinite;
   
 }
 
@@ -220,10 +220,10 @@ button:hover {
       }
     
       30% {
-        left: 110px;
+        left: 150px;
       }
       100% {
-        left: 110px;
+        left: 150px;
       }
 }
 

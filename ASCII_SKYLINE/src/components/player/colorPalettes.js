@@ -1,8 +1,8 @@
 const colorPalettes = [
     {
-        background: "rgb(195, 200, 186)",
-        foreground: "rgb(122, 154, 214)",
-        characters: ".,_#▓░^+$~#`}{*'t",
+        background: "rgb(142, 142, 142)",
+        foreground: "rgb(35, 80, 120)",
+        characters: ".,_#░^▓+$~#`}{*'t",
     },
     {
         background: "rgb(0, 0, 0)",

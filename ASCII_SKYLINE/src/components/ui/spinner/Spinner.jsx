@@ -3,20 +3,40 @@ import { Html } from "@react-three/drei";
 import "./Spinner.css";
 
 const Spinner = () => {
-    const spinner = ["◴", "◷", "◶", "◵"];
+    const spinner = [
+        "▅▃▇█▆▇▅█▃▆█▅",
+        "▃▇█▆▇▅█▃▆█▅▅",
+        "▇█▆▇▅█▃▆█▅▅▃",
+        "█▆▇▅█▃▆█▅▅▃▇",
+        "▆▇▅█▃▆█▅▅▃▇█",
+        "▇▅█▃▆█▅▅▃▇█▆",
+        "▅█▃▆█▅▅▃▇█▆▇",
+        "█▃▆█▅▅▃▇█▆▇▅",
+        "▃▆█▅▅▃▇█▆▇▅█",
+        "▆█▅▅▃▇█▆▇▅█▃",
+        "█▅▅▃▇█▆▇▅█▃▆",
+        "▅▅▃▇█▆▇▅█▃▆█",
+        "▅▃▇█▆▇▅█▃▆█▅",
+    ];
+
+    // "▁", "▃", "▅", "▆", "▇", "█", "▇", "▆", "▅","▄","▃"
+    // "◴", "◷", "◶", "◵";
     const [currentFrame, setCurrentFrame] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentFrame((prevFrame) => (prevFrame + 1) % spinner.length);
-        }, 800);
+        }, 200);
 
         return () => clearInterval(interval);
     }, []);
 
     const handleWindowClick = () => {
         const hideOuter = document.getElementsByClassName("outer")[0];
-        hideOuter.style.display = "none";
+        hideOuter.className = "fadeOut";
+        setTimeout(() => {
+            hideOuter.style.display = "none";
+        }, 499);
     };
 
     useEffect(() => {

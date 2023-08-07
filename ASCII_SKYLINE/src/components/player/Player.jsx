@@ -8,7 +8,7 @@ import colorPalettes from "./colorPalettes.js";
 import Gradient from "./Gradient";
 import Spinner from "../ui/spinner/Spinner";
 
-export default function PlaySound() {
+export default function Player() {
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
     const sound = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -19,6 +19,7 @@ export default function PlaySound() {
         if (sound.current && isPlaying) {
             sound.current.currentTime = currentTime; // Set the currentTime of the audio
             sound.current.play();
+            sound.loop = false;
         } else if (sound.current) {
             sound.current.pause();
         }
@@ -56,48 +57,19 @@ export default function PlaySound() {
         setColorPalette(palette);
     };
 
-    useEffect(() => {
-        const handleTrackEnded = () => {
-            // Change the track index to the next one in the array
-
-            const nextTrackIndex = (currentTrackIndex + 1) % tracks.length;
-            changeTrack(nextTrackIndex);
-        };
-
-        // Add event listener for the 'ended' event on the audio element
-        sound.current?.addEventListener("ended", handleTrackEnded);
-
-        // Clean up the event listener when the component unmounts or the currentTrackIndex changes
-        return () => {
-            sound.current?.removeEventListener("ended", handleTrackEnded);
-        };
-    }, [currentTrackIndex]);
-
     const url = tracks[currentTrackIndex];
     const display = url
         .replace("/tracks/", '░░░ Radiofear  -  "')
         .concat('" ░░░');
 
-    // sound.current.onended = function () {
-    //     handleNextTrack();
-    // };
-
     return (
         <>
-            {/* <Html>
-                <audio
-                    src={tracks[currentTrackIndex]}
-                    ref={(audio) => (sound.current = audio)}
-                    onended={handleTrackEnded()}
-                />
-            </Html> */}
             <Suspense fallback={null}>
                 <PositionalAudio
                     url={tracks[currentTrackIndex]}
                     ref={(audio) => (sound.current = audio)}
-                    // onEnded={() => {
-
-                    // }}
+                    loop={false}
+                    onEnded={() => changeTrack(currentTrackIndex + 1)}
                 />
             </Suspense>
 

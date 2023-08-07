@@ -1,16 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Environment, useEnvironment } from "@react-three/drei";
 import VideoMaterial from "./video/VideoMaterial";
-import footage from "/360_rip.mp4";
+import footage from "/360_posterize.mp4";
 
 export default function Space() {
-    const videoRef = useRef();
-
-    useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.stop();
-        }
-    }, []);
+    const [isPlaying] = useState();
 
     const [video, setVideo] = useState();
 
@@ -20,7 +14,11 @@ export default function Space() {
         <>
             <mesh>
                 <sphereGeometry args={[50, 10, 5]} />
-                <VideoMaterial src={footage} setVideo={setVideo} />
+                <VideoMaterial
+                    src={footage}
+                    setVideo={setVideo}
+                    isPlaying={isPlaying}
+                />
             </mesh>
             {environment && <primitive object={environment.scene} />}
             <mesh>

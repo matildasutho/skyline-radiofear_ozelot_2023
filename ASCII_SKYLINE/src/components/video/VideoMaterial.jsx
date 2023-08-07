@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import React, { useState, useEffect } from "react";
 import { useVideoTexture } from "@react-three/drei";
+import { useVideo } from "../VideoContext"; // Import your video context
 
 const VideoMaterial = ({ src, setVideo }) => {
-    const [videoPaused, setVideoPaused] = useState(true);
+    const { isPlaying } = useVideo(); // Get the play state from the context
 
     const texture = useVideoTexture(src);
     texture.wrapS = THREE.RepeatWrapping;
@@ -12,26 +13,37 @@ const VideoMaterial = ({ src, setVideo }) => {
     texture.offset.x = 1;
 
     setVideo?.(texture.image);
+    texture.image.pause();
 
-    // useEffect(() => {
-    //     if (videoPaused) {
-    //         texture.image.pause(); // Pause the video when videoPaused is true
-    //     } else {
-    //         texture.image.play(); // Play the video when videoPaused is false
+    const playVideo = () => {
+        texture.image.play(); // Start fading out when the window is clicked
+    };
+
+    // const handleTransitionEnd = () => {
+    //     if (fadeOut) {
+    //         setIsHidden(true);
     //     }
-    // }, [videoPaused, texture.image]);
+    // };
+
+    useEffect(() => {
+        window.addEventListener("click", playVideo);
+        return () => {
+            window.removeEventListener("click", playVideo);
+        };
+    }, []);
 
     // useEffect(() => {
-    //     // When the component mounts, set videoPaused to false to play the video
-    //     setVideoPaused(false);
-
-    //     // Cleanup function to pause the video when the component unmounts
-    //     return () => {
+    //     if (isPlaying) {
+    //         texture.image.play();
+    //     } else {
     //         texture.image.pause();
-    //     };
-    // }, []);
+    //     }
 
-    // texture.image.pause();
+    //     return () => {
+    //         texture.image.pause(); // Pause the video when the component unmounts
+    //     };
+    // }, [isPlaying, texture.image]);
+
     return (
         <meshStandardMaterial
             side={THREE.DoubleSide}
@@ -42,4 +54,5 @@ const VideoMaterial = ({ src, setVideo }) => {
         />
     );
 };
+
 export default VideoMaterial;
