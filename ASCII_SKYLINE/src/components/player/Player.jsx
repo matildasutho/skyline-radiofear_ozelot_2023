@@ -3,8 +3,10 @@ import { PositionalAudio } from "@react-three/drei";
 import DashBoard from "../ui/dashboard/DashBoard.jsx";
 import AsciiEffect from "../AsciiEffect.jsx";
 import "../ui/dashboard/DashBoard.css";
-import colorPalettes from "./colorPalettes";
-import tracks from "./tracks";
+import tracks from "./tracks.js";
+import colorPalettes from "./colorPalettes.js";
+import Gradient from "./Gradient";
+import Spinner from "../ui/spinner/Spinner";
 
 export default function PlaySound() {
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -50,25 +52,14 @@ export default function PlaySound() {
         }
     }, [isPlaying]);
 
-    // const handleColorChange = (palette) => {
-    //     setColorPalette(palette);
-    //     setRootBackgroundColor(palette.background);
-    //     // Pass the background color to the parent component (RootContainer)
-    //     // So it can update the ReactDOM's root background.
-    //     if (typeof window !== "undefined") {
-    //         window.parent.postMessage(
-    //             {
-    //                 type: "BACKGROUND_COLOR_CHANGE",
-    //                 backgroundColor: palette.background,
-    //             },
-    //             "*"
-    //         );
-    //     }
-    // };
+    const handleColorChange = (palette) => {
+        setColorPalette(palette);
+    };
 
     useEffect(() => {
         const handleTrackEnded = () => {
             // Change the track index to the next one in the array
+
             const nextTrackIndex = (currentTrackIndex + 1) % tracks.length;
             changeTrack(nextTrackIndex);
         };
@@ -83,33 +74,40 @@ export default function PlaySound() {
     }, [currentTrackIndex]);
 
     const url = tracks[currentTrackIndex];
-    const display = url.replace("/tracks/", "░░░");
-    const duration = tracks[0].duration;
-    console.log(duration);
+    const display = url
+        .replace("/tracks/", '░░░ Radiofear  -  "')
+        .concat('" ░░░');
+
+    // sound.current.onended = function () {
+    //     handleNextTrack();
+    // };
 
     return (
         <>
+            {/* <Html>
+                <audio
+                    src={tracks[currentTrackIndex]}
+                    ref={(audio) => (sound.current = audio)}
+                    onended={handleTrackEnded()}
+                />
+            </Html> */}
             <Suspense fallback={null}>
                 <PositionalAudio
                     url={tracks[currentTrackIndex]}
                     ref={(audio) => (sound.current = audio)}
-                    onEnded={() => {
-                        console.log("ended");
-                    }}
-                />
-                {/* <Audio
-                    src={tracks[currentTrackIndex]}
-                    queNext={() => {
-                        handleTrackEnded();
-                    }}
-                /> */}
-                <AsciiEffect
-                    sound={sound}
-                    backGround={colorPalette.background}
-                    foreGround={colorPalette.foreground}
-                    characTers={colorPalette.characters}
+                    // onEnded={() => {
+
+                    // }}
                 />
             </Suspense>
+
+            <AsciiEffect
+                sound={sound}
+                backGround={colorPalette.background}
+                foreGround={colorPalette.foreground}
+                characTers={colorPalette.characters}
+            />
+            <Gradient />
 
             <DashBoard
                 ffaction={() => changeTrack(currentTrackIndex + 1)}
@@ -124,7 +122,8 @@ export default function PlaySound() {
                 button5={() => handleColorChange(colorPalettes[4])}
                 button6={() => handleColorChange(colorPalettes[5])}
                 // Add more buttons with color palettes as needed
-            />
+            ></DashBoard>
+            <Spinner />
         </>
     );
 }

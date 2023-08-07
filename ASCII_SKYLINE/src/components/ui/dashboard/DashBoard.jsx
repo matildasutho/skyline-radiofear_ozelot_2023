@@ -17,33 +17,31 @@ const DashBoard = ({
 }) => {
     return (
         <>
-            <Html fullscreen zIndexRange={[90, 0]}>
+            <Html fullscreen>
                 <div className="top-right"></div>
-                <div className="container">
+                <div className="container fadeIn">
                     <div className="vertical">
                         <div className="horizontal">
                             <span className="casette">
                                 <span className="flitter mini-box"></span>
                                 SKYLINE
                             </span>
-                            <span className="label">
-                                <span className="scrollbar">
-                                    <span className="blink">
-                                        {trackDisplay}
-                                    </span>
-                                </span>
-                            </span>
+                            <div className="overflow-hidden">
+                                <marquee scrollamount="3" className="label">
+                                    <span>{trackDisplay}</span>
+                                </marquee>
+                            </div>
                         </div>
                         <div className="horizontal">
                             <div className="vertical">
-                                <span className="btn-2nd link">
+                                <span className="btn-1st link">
                                     {/* <img
                                         className="icon bc"
                                         src="src/assets/bc-logotype-light-128.png"
                                     ></img> */}
-                                    Bandcamp
+                                    BC
                                 </span>
-                                <span className="btn-2nd link">Soundcloud</span>
+                                <span className="btn-1st link">SC</span>
                             </div>
                             <div className="vertical">
                                 <span className="btn-2nd link">
@@ -52,9 +50,20 @@ const DashBoard = ({
                                         className="icon"
                                         src="src/assets/Spotify_Logo_RGB_White.png"
                                     ></img> */}
-                                    Spotify
+                                    Stream
                                 </span>
                                 <span className="btn-2nd link">Instagram</span>
+                            </div>
+                            <div className="vertical">
+                                <span className="btn-2nd link">
+                                    {" "}
+                                    {/* <img
+                                        className="icon"
+                                        src="src/assets/Spotify_Logo_RGB_White.png"
+                                    ></img> */}
+                                    Video
+                                </span>
+                                <span className="btn-2nd link">Project</span>
                             </div>
                             <div className="vertical">
                                 <button
@@ -120,10 +129,7 @@ const DashBoard = ({
                                         src="src/assets/Ozelot_Logo_Final_StefanoBona_2022.png"
                                     ></img>
                                 </span>
-                                <span
-                                    className="btn-2nd"
-                                    onClick={toggleaction}
-                                >
+                                <span className="link" onClick={toggleaction}>
                                     {inner}
                                     {/* {label} */}
                                     <img

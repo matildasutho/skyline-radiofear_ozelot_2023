@@ -1,11 +1,11 @@
 import React from "react";
 import { Html } from "@react-three/drei";
 
-const Audio = ({ src, queNext }) => {
+const Audio = ({ src, onended, ref }) => {
     return (
         <>
             <Html>
-                <audio src={src} onEnded={queNext} />
+                <audio src={src} onEnded={onended} ref={ref} />
             </Html>
         </>
     );

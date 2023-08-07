@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Environment, useEnvironment } from "@react-three/drei";
 import VideoMaterial from "./video/VideoMaterial";
-import footage from "/car_video.mp4";
+import footage from "/360_rip.mp4";
 
 export default function Space() {
     const videoRef = useRef();

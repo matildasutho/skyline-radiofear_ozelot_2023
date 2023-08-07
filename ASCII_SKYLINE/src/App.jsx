@@ -1,10 +1,6 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-    OrbitControls,
-    PerspectiveCamera,
-    AsciiRenderer,
-} from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { VRButton, XR, Controllers } from "@react-three/xr";
 import "./App.css";
 import Space from "./components/Space.jsx";
