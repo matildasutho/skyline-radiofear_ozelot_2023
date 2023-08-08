@@ -1,7 +1,9 @@
 import * as THREE from "three";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useVideoTexture } from "@react-three/drei";
 import { useVideo } from "../VideoContext"; // Import your video context
+
+// video material paused until user interacts with the window. Hopefully save on bandwidth
 
 const VideoMaterial = ({ src, setVideo }) => {
     const { isPlaying } = useVideo(); // Get the play state from the context
@@ -16,14 +18,8 @@ const VideoMaterial = ({ src, setVideo }) => {
     texture.image.pause();
 
     const playVideo = () => {
-        texture.image.play(); // Start fading out when the window is clicked
+        texture.image.play();
     };
-
-    // const handleTransitionEnd = () => {
-    //     if (fadeOut) {
-    //         setIsHidden(true);
-    //     }
-    // };
 
     useEffect(() => {
         window.addEventListener("click", playVideo);
@@ -31,18 +27,6 @@ const VideoMaterial = ({ src, setVideo }) => {
             window.removeEventListener("click", playVideo);
         };
     }, []);
-
-    // useEffect(() => {
-    //     if (isPlaying) {
-    //         texture.image.play();
-    //     } else {
-    //         texture.image.pause();
-    //     }
-
-    //     return () => {
-    //         texture.image.pause(); // Pause the video when the component unmounts
-    //     };
-    // }, [isPlaying, texture.image]);
 
     return (
         <meshStandardMaterial

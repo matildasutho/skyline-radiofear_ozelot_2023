@@ -1,8 +1,13 @@
 const colorPalettes = [
     {
-        background: "rgb(142, 142, 142)",
-        foreground: "rgb(35, 80, 120)",
-        characters: ".,_#░^▓+$~#`}{*'t",
+        background: "rgb(75, 75, 75)",
+        foreground: "rgb(200, 220, 255)",
+        characters: ".*~_^`/§▄(#`^{!}=+",
+    },
+    {
+        background: "rgb(38, 109, 133)",
+        foreground: "rgb(176, 200, 209)",
+        characters: "._╬_{,></*~!",
     },
     {
         background: "rgb(0, 0, 0)",
@@ -10,19 +15,15 @@ const colorPalettes = [
         characters: ".#`_{,*~!",
     },
     {
-        background: "rgb(75, 75, 75)",
-        foreground: "rgb(200, 220, 255)",
-        characters: ".*~_^`/§▄(#`^{!}=+",
-    },
-    {
         background: "rgb(112, 95, 95)",
         foreground: "rgb(175, 236, 237)",
         characters: ".,░_^{«~▄#`_!*",
     },
     {
-        background: "rgb(38, 109, 133)",
-        foreground: "rgb(176, 200, 209)",
-        characters: "._╬_{,></*~!",
+ 
+        background: "rgb(158, 245, 255)",
+        foreground: "rgb(101, 101, 101)",
+        characters: ".,░#▄^▓+~#`}{*t",
     },
     {
         background: "rgb(135, 135, 160)",

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Html } from "@react-three/drei";
 import "./Spinner.css";
 
+//spinner while video is paused in bG
+
 const Spinner = () => {
     const spinner = [
         "▅▃▇█▆▇▅█▃▆█▅",
@@ -33,10 +35,10 @@ const Spinner = () => {
 
     const handleWindowClick = () => {
         const hideOuter = document.getElementsByClassName("outer")[0];
-        hideOuter.className = "fadeOut";
+        // hideOuter.className = "fadeOut";
         setTimeout(() => {
             hideOuter.style.display = "none";
-        }, 499);
+        }, 99);
     };
 
     useEffect(() => {
